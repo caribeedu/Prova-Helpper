@@ -9,7 +9,11 @@ class DatabaseConfig {
     private conn: Connection;
 
     constructor() {
-        this.conn = mysql.createConnection({ host:'localhost', user: 'root', password: '12345' }).promise();
+        this.conn = mysql.createConnection({
+            host: process.env.DATABASE_INSTANCE,
+            user: process.env.DATABASE_USER,
+            password: process.env.DATABASE_PASSWORD
+        }).promise();
     };
     
     public static getInstance() {

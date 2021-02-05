@@ -4,23 +4,35 @@ O projeto inicial é um cadastro de usuários em memória muito simples e sem ut
 
 ### Rodando o projeto
 
-`node src/index.js`
+É necessário ter o NodeJS instalado em sua máquiana (versão utilizada `v14.15.3`)
+
+`npm install`
+
+#### Rodando em Debug
+
+`npm run debug` (para Windows)
+
+`npm run debug:unix` (para Mac/Linux)
+
+#### Rodando Testes Unitários
+
+`npm test`
 
 ## O que será avaliado?
 
 A idéia é deixar o candidato bem livre pra reimplementar o código da maneira que mais lhe for conveniente e que mais demonstre suas habilidades. Está liberado o uso de libs de terceiros, bancos de dados, autenticação, etc.
 
-1. Qualidade de código
-2. Uso de patterns adequados
-3. Estratégia de validação de dados
-4. Testes unitários
+1. Qualidade de código ✔️
+2. Uso de patterns adequados ✔️
+3. Estratégia de validação de dados ✔️
+4. Testes unitários ✔️
 
 ## O que é desejado (não obrigatório) na entrega?
 
-1. Adição de Banco de dados
-2. Utilização de docker
-3. Autenticação
-4. Utilização de typescript
+1. Adição de Banco de dados ✔️
+2. Utilização de docker ❌
+3. Autenticação ✔️
+4. Utilização de typescript ✔️
 
 ## Como será feita a entrega?
 

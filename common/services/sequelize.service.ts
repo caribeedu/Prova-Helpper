@@ -13,12 +13,12 @@ class SequelizeService {
 
         this.sequelize = new Sequelize(
             'prova_node_edu_caribe',
-            'root',
-            '12345',
+            process.env.DATABASE_USER!,
+            process.env.DATABASE_PASSWORD,
             {
-                host: 'localhost',
+                host: process.env.DATABASE_INSTANCE,
                 dialect: 'mysql',
-                port: 3306,
+                port: parseInt(process.env.DATABASE_PORT!),
                 retry: {
                     max: 3
                 },            

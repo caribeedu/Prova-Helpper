@@ -22,6 +22,12 @@ const name = 'Henrique';
 
 describe('Should test basic users endpoints', () => {
     const request = supertest.agent(app);
+
+    beforeEach(function(done) {
+        this.timeout(3000);
+        setTimeout(done, 1500);
+    });
+    
     after(done => {
         app.close(() => { sequelizeService.getSequelize().close().finally(done); });
     });

@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express from 'express';
 import * as http from 'http';
 import * as bodyparser from 'body-parser';
@@ -8,7 +11,7 @@ import cors from 'cors';
 import debug from 'debug';
 import helmet from 'helmet';
 
-import { CommonRoutesConfig}  from './common/common.routes.config';
+import { CommonRoutesConfig }  from './common/common.routes.config';
 import { UsersRoutes } from './users/users.routes.config';
 import { AuthRoutes } from './auth/auth.routes.config';
 
