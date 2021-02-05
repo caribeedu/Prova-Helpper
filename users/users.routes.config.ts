@@ -27,7 +27,7 @@ export class UsersRoutes extends CommonRoutesConfig {
                 UsersController.removeUser);
 
         this.app.put(`/users/:id`,[
-            UsersMiddleware.validateRequiredUserBodyFields,
+            JWTMiddleware.validJWTNeeded,
             CommonPermissionMiddleware.onlyAdminCanDoThisAction,
             UsersController.put
         ]);

@@ -16,27 +16,28 @@ class AuthMiddleware {
         if (req.body && req.body.email && req.body.password) {
             next();
         } else {
-            res.status(400).send({error: 'Missing body fields: email, password'});
+            res.status(400).send({error: 'Campos obrigatórios de email/senha faltando.'});
         }
     }
 
     async verifyUserPassword(req: express.Request, res: express.Response, next: express.NextFunction) {
-        const user: any = await usersService.getByEmail(req.body.email);
+        const user = await usersService.getByEmail(req.body.email);
         if (user) {
             let passwordHash = user.password;
             if (await argon2.verify(passwordHash, req.body.password)) {
                 req.body = {
-                    id: user.id,
+                    userId: user.id,
                     email: user.email,
                     provider: 'email',
-                    permissionLevel: user.permissionLevel,
+                    permissionLevel: user.permission_level,
                 };
                 return next();
             } else {
-                res.status(400).send({errors: `Invalid e-mail and/or password`});
+                res.status(400).send({error: 'Email e/ou senha inválido(s)'});
             }
-        } else {
-            res.status(400).send({errors: `Invalid e-mail and/or password`});
+        }
+        else {
+            res.status(400).send({error: 'Email e/ou senha inválido(s)'});
         }
     }
 }

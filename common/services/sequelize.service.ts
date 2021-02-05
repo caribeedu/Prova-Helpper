@@ -25,7 +25,8 @@ class SequelizeService {
                 pool: {
                     min: 0,
                     max: 10
-                }
+                },
+                logging: false
             }
         );
         

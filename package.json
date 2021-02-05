@@ -2,15 +2,15 @@
   "name": "24-07-2020",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/app.js",
   "scripts": {
     "start": "tsc && node ./dist/app.js",
     "debug": "set DEBUG=app:* && npm run start",
-    "test": "mocha -r ts-node/register test/**/*.test.ts"
+    "test": "mocha -r ts-node/register tests/**/*.test.ts"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Edu Caribé",
+  "license": "MIT",
   "dependencies": {
     "argon2": "^0.27.1",
     "cors": "^2.8.5",

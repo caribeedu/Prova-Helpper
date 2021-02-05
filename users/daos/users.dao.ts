@@ -48,14 +48,17 @@ class UsersDao {
             },
             permission_level: {
                 type: DataTypes.ENUM('1', '2'),
-                allowNull: false
+                allowNull: false,
+                validate: {     
+                    notEmpty: true,
+                    isInt: true
+                }
             },
             password: {
                 type: DataTypes.STRING,
                 allowNull: false,
                 validate: {     
                     notEmpty: true, 
-                    isAlphanumeric: true,
                     len: [4, 512]
                 }
             }
@@ -81,7 +84,7 @@ class UsersDao {
     }
 
     async addUser(user: UserDto) {
-        return this.Users.create(user);
+        return this.Users.create(user).then(user => { return user.get().id; });
     }
 
     async putUserById(user: UserDto) {

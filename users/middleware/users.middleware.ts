@@ -15,42 +15,25 @@ class UsersMiddleware {
         if (req.body && req.body.email) {
             next();
         } else {
-            res.status(400).send({error: `Missing required fields: email and/or password`});
+            res.status(400).send({error: 'Campos obrigatórios de email/senha faltando.'});
         }
     }
     
     async validateSameEmailDoesntExist(req: express.Request, res: express.Response, next: express.NextFunction) {
         const user = await userService.getByEmail(req.body.email);
         if (user) {
-            res.status(400).send({error: `User email already exists`});
-        } else {
-            next();
-        }
-    }
-    
-    async validateSameEmailBelongToSameUser(req: express.Request, res: express.Response, next: express.NextFunction) {
-        const user = await userService.getByEmail(req.body.email);
-        if (user && user.id === req.body.id) {
-            next();
-        } else {
-            res.status(400).send({error: `Invalid email`});
-        }
-    }
-    
-    async validatePatchEmail(req: express.Request, res: express.Response, next: express.NextFunction) {
-        if (req.body.email) {
-            UsersMiddleware.getInstance().validateSameEmailBelongToSameUser(req, res, next);
+            res.status(400).send({error: 'Usuário com este email já existente.'});
         } else {
             next();
         }
     }
     
     async validateUserExists(req: express.Request, res: express.Response, next: express.NextFunction) {
-        const user = await userService.readById(req.body.id);
+        const user = await userService.readById(parseInt(req.params.id));
         if (user) {
             next();
         } else {
-            res.status(404).send({error: `User ${req.params.userId} not found`});
+            res.status(404).send({error: 'Usuário não encontrado.'});
         }
     }
 }

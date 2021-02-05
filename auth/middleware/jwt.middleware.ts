@@ -20,7 +20,7 @@ class JwtMiddleware {
             return next();
         }
         else {
-            return res.status(400).send({error: 'need body field: refreshToken'});
+            return res.status(400).send({error: 'Token de validação em falta.'});
         }
     };
 
@@ -28,13 +28,11 @@ class JwtMiddleware {
         const refreshToken = Buffer.from(req.body.refreshToken, 'base64').toString();
         const hash = crypto.createHmac('sha512', req.jwt.refreshKey).update(req.jwt.userId + jwtSecret).digest("base64");
         if (hash === refreshToken) {
-            delete req.jwt.iat;
-            delete req.jwt.exp;
             req.body = req.jwt;
             return next();
         }
         else {
-            return res.status(400).send({error: 'Invalid refresh token'});
+            return res.status(400).send({error: 'Token inválido.'});
         }
     };
 
@@ -48,7 +46,6 @@ class JwtMiddleware {
                     req.jwt = jwt.verify(authorization[1], jwtSecret);
                     next();
                 }
-
             }
             catch (err) {
                 return res.status(403).send();

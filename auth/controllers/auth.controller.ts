@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
 
 // todo: remove-me
-const jwtSecret = 'teste';//process.env.JWT_SECRET;
+const jwtSecret = 'M1S3CR3T';//process.env.JWT_SECRET;
 const tokenExpirationInSeconds = 36000;
 
 class AuthController {
